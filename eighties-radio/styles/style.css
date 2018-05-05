@@ -1,0 +1,20 @@
+* {
+ box-sizing: border-box;
+ margin: 0;
+ padding: 0;
+ height: 100%;
+}
+
+body {
+  background-position: -100px 0;
+  background-image: url('/media/drive.gif');
+  font-family: "Courier New",Courier,monospace;
+  color: #fff;
+  display: flex;
+}
+
+h1 {
+  font-size: 26px;
+  font-weight: normal;
+  padding: 5px;
+}
