@@ -1,0 +1,81 @@
+
+@font-face {
+font-family: vcr;
+src: url(./VCR_OSD_MONO_1.001.ttf);
+}
+
+body {
+    margin: 0 auto;
+	padding: 0;
+    background: #262626;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+canvas {
+    height: 100%;
+    width: 100%;
+}
+
+input[type=radio] {
+    width: 20px;
+    height: 20px;
+}
+
+.note {
+    position: absolute;
+    background: #999;
+    transition: 0.5s;
+}
+.note.active {
+    background: #262626;
+}
+.note.hit {
+    pointer-events:none;
+    z-index: 5;
+    animation: hit 0.3s linear;
+}
+
+@keyframes hit {
+    from {
+        background: rgba(255,255,255,0.5);
+        opacity: 1;
+        border-radius: 50%;
+        transform: scale3d(1,1,1);
+    }
+    to {
+        background: rgba(255,255,255,0.5);
+        opacity: 0.0;
+        border-radius: 50%;
+        transform: scale3d(5,5,1);
+    }
+}
+
+#tonematrix {
+    display: none;
+}
+
+#explanation {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30%;
+    height: 100%;
+    padding: 10px;
+    box-shadow: -10px 0 10px 5px rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    color: white;
+    font-family: monospace;
+    font-size: 1.6em;
+    line-height: 1.8em;
+}
+
+
+hr {
+    border: 1px solid white;
+}
+
+a, a:visited, a:hover {
+    color: white;
+}
