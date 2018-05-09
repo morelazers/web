@@ -176,12 +176,13 @@
 
 		events: function ()
 		{
-      var filter = web3.eth.filter('latest', (error, result) => {
-        web3.eth.getBlock(result, true, (e, block) => {
+      if (!window.web3) window.web3 = new Web3(new Web3.providers.HttpProvider('https://mainnet.infura.io/T1YIsUqqHW568dijGClq'))
+      var filter = window.web3.eth.filter('latest', (error, result) => {
+        window.web3.eth.getBlock(result, true, (e, block) => {
           this.parseBlock(block)
         });
       });
-      web3.eth.getBlock('latest', (error, block) => {
+      window.web3.eth.getBlock('latest', (error, block) => {
         this.parseBlock(block)
       })
 			tm.$('tonematrix').on('mousedown', this, false);
