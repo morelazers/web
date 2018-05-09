@@ -174,17 +174,31 @@
       this.chooseFromHex(splitChars)
     },
 
-		events: function ()
-		{
-      if (!window.web3) window.web3 = new Web3(new Web3.providers.HttpProvider('https://mainnet.infura.io/T1YIsUqqHW568dijGClq'))
-      var filter = window.web3.eth.filter('latest', (error, result) => {
-        window.web3.eth.getBlock(result, true, (e, block) => {
-          this.parseBlock(block)
-        });
-      });
+    getLatestBlock: function () {
       window.web3.eth.getBlock('latest', (error, block) => {
         this.parseBlock(block)
       })
+    },
+
+    getBlockPeriodic: function () {
+      setInterval(() => {
+        this.getLatestBlock()
+      }, 1000)
+    },
+
+		events: function ()
+		{
+      if (window.web3) {
+        var filter = window.web3.eth.filter('latest', (error, result) => {
+          window.web3.eth.getBlock(result, true, (e, block) => {
+            this.parseBlock(block)
+          });
+        });
+      } else {
+        window.web3 = new Web3(new Web3.providers.HttpProvider('https://mainnet.infura.io/T1YIsUqqHW568dijGClq'))
+        this.getBlockPeriodic()
+      }
+      this.getLatestBlock()
 			tm.$('tonematrix').on('mousedown', this, false);
 			tm.$('tonematrix').on('mousemove', this, false);
 			window.addEventListener('mouseup', this, false);
