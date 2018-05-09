@@ -4,6 +4,7 @@ if (!window.AudioContext)
 }
 else
 {
+  window.confirm('Click OK to start')
 	new tm.Core();
   var context = tm.Synth.master.context
   var kick = new Kick(context, gainNode)
@@ -23,5 +24,4 @@ else
   kick.gain.connect(fullNode)
   snare.output.connect(fullNode)
   fullNode.connect(context.destination)
-
 }
