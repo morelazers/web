@@ -1,21 +1,23 @@
-if (!window.AudioContext)
-{
-	alert('No WebAudio support');
+if (!window.AudioContext) {
+  alert('No WebAudio support')
+} else {
+  // window.confirm('Click OK to start')
 }
-else
-{
-  window.confirm('Click OK to start')
-	new tm.Core();
+
+function startBlockMatrix() {
+  var button = document.querySelector('.start-button')
+  button.style.display = 'none'
+  new tm.Core()
   var context = tm.Synth.master.context
   var kick = new Kick(context, gainNode)
   var snare = new Snare(context)
   var now = context.currentTime
   kick.setup()
   kick.trigger(now)
-  kick.setLoop(1, 2)
+  kick.setLoop(0.5)
   snare.setup()
   snare.trigger(now)
-  snare.setLoop(0.5)
+  snare.setLoop(1)
 
   var fullNode = context.createGain()
   fullNode.gain.value = 0.2

@@ -1,63 +1,243 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Block Matrix</title>
-    </head>
-    <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="css/rain.css">
-    <link rel="icon" href="image/favicon.ico">
-    <body>
-        <div id="tonematrix"></div>
-        <canvas></canvas>
-        <div id="explanation">
-            <div class="whatitis">
-                <h1>Sounds of the Blockchain</h1>
-            <hr/>
-                <p>Hello human, You're listening to the relaxing sounds of the Ethereum blockchain.</p>
-                <p>
-                More precisely, you're listening to the latest blockhash translated onto coordinates in a tonematrix.
-                To the left is a visualization of the tones, drawn on HTML canvas.</p>
-                <p>Made by <a href='https://flexdapps.com'>Flex Dapps</a></p>   
-            </div>
-            <div class='references'>
-                <h3>Credits:</h3>
-                <ul>
-                    <li><a href="https://github.com/tjwei/tone_of_life">Tone Matrix by tjwei</a>   </li>
-                    <li href="">Shoutout to Sef for help with Canvas & Audio Context</li>
-                </ul>
-            </div>
-        </div>
 
-        <div style="float: right;margin: 0 0 10px 10px;background-color: #fff;font-size: 46px"></div>
-        <i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i>
-    </body>
-     <!-- <div data-video="aDfZ6STAfqA"  
+<head>
+  <meta charset="UTF-8">
+  <title>Block Matrix</title>
+</head>
+<link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="css/rain.css">
+<link rel="icon" href="image/favicon.ico">
+
+<body>
+  <div class="container">
+    <div class="info-icon">
+      <img src="./image/info.svg" />
+    </div>
+    <div class="tonematrix-container">
+      <div id="tonematrix"></div>
+      <button class="start-button" onclick="startBlockMatrix()">START</button>
+      <canvas>
+      </canvas>
+    </div>
+    <div id="explanation" class="hide">
+      <div class="whatitis">
+        <h1>Sounds of the Blockchain</h1>
+        <hr/>
+        <p>Hello human, You're listening to the relaxing sounds of the Ethereum blockchain.</p>
+        <p>
+          More precisely, you're listening to the latest blockhash translated onto coordinates in a tonematrix. To the left is a visualization
+          of the tones, drawn on HTML canvas.</p>
+        <p>Made by
+          <a href='https://flexdapps.com'>Flex Dapps</a>
+        </p>
+      </div>
+      <div class='references'>
+        <h3>Credits:</h3>
+        <ul>
+          <li>
+            <a href="https://github.com/tjwei/tone_of_life">Tone Matrix by tjwei</a>
+          </li>
+          <li href="">Shoutout to Seph for help with Canvas & Audio Context</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="float: right;margin: 0 0 10px 10px;;font-size: 46px"></div>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>`
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+    <i class="rain"></i>
+  </div>
+</body>
+<!-- <div data-video="aDfZ6STAfqA"  
        data-autoplay="1"         
        data-loop="1"             
        id="youtube-audio">
     </div>
     <script src="https://www.youtube.com/iframe_api"></script> -->
-    <script src="https://cdn.rawgit.com/labnol/files/master/yt.js"></script>
-    <script>
-        const canvas = document.getElementsByTagName('canvas')[0]
-        var width, height
-        const ctx = canvas.getContext('2d')
-        var resize = window.onresize = function() {
-          canvas.width = (width = canvas.clientWidth) * devicePixelRatio;
-          canvas.height = (height = canvas.clientHeight) * devicePixelRatio;
-          ctx.scale(devicePixelRatio, devicePixelRatio) // For high dpi display support
-        }
-        resize()
-    </script>
-    <script src="js/web3.js"></script>
-    <script src="js/drum/kick.js"></script>
-    <script src="js/drum/snare.js"></script>
-    <script src="js/game.js"></script>
-    <script src="js/tonematrix.js"></script>
-    <script src="js/core.js"></script>
-    <script src="js/synth.js"></script>
-    <script src="js/voice.js"></script>
-    <script src="js/app.js"></script>
-    
+<script src="https://cdn.rawgit.com/labnol/files/master/yt.js"></script>
+<script>
+  const canvas = document.getElementsByTagName('canvas')[0]
+  var width, height
+  const ctx = canvas.getContext('2d')
+  var resize = window.onresize = function () {
+    // canvas.width = (width = canvas.clientWidth) * devicePixelRatio;
+    // canvas.height = (height = canvas.clientHeight) * devicePixelRatio;
+    // ctx.scale(devicePixelRatio, devicePixelRatio) // For high dpi display support
+    var windowWidth = window.innerWidth
+    var windowHeight = window.innerHeight
+
+    if (windowWidth > windowHeight) {
+      canvas.width = windowHeight
+      canvas.height = windowHeight
+      width = windowHeight
+      height = windowHeight
+    } else {
+      canvas.width = windowWidth
+      canvas.height = windowWidth
+      height = windowWidth
+      width = windowWidth
+    }
+    console.log(canvas.width)
+    console.log(canvas.height)
+  }
+  resize()
+</script>
+<script src="js/web3.js"></script>
+<script src="js/drum/kick.js"></script>
+<script src="js/drum/snare.js"></script>
+<script src="js/game.js"></script>
+<script src="js/tonematrix.js"></script>
+<script src="js/core.js"></script>
+<script src="js/synth.js"></script>
+<script src="js/voice.js"></script>
+<script src="js/app.js"></script>
+
 </html>
